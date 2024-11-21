@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using ZooShop.Models;
 
+
 namespace ZooShop.Controllers
 {
     public class HomeController : Controller
@@ -14,11 +15,6 @@ namespace ZooShop.Controllers
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
