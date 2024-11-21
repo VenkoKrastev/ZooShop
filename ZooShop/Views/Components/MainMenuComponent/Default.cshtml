@@ -1,0 +1,35 @@
+﻿@using ZooShop.Components
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+
+
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="All">Продукти</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Animals" asp-action="All">Животни</a>
+    </li>
+    @{
+        
+        string desiredUserId = "c2f14bf7-ffdd-47a4-90b3-f2309486fae9";
+
+        
+        var userId = (User.Identity.IsAuthenticated) ? User.FindFirstValue(ClaimTypes.NameIdentifier) : null;
+
+        
+        bool isDesiredUser = (userId == desiredUserId);
+    }
+
+    @if (isDesiredUser)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Add">Добавяне на продукти</a>
+        </li>
+    } 
+    
+
+</ul>
