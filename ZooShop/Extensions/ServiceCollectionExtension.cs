@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
-using ZooShop.Data;
+using ZooShop.Infrastructure.Data;
 
 namespace ZooShop.Extensions
 {
