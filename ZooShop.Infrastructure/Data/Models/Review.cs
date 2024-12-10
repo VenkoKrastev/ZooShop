@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ZooShop.Infrastructure.Data.Models
 {
-    public class OrderItem
+    public class Review
     {
         public int Id { get; set; }
-        public int OrderId { get; set; }
-        public Order Order { get; set; } = null!;
+        public string Content { get; set; } = null!;
+        public int Rating { get; set; } // Between 1 and 5
         public int ProductId { get; set; }
         public Product Product { get; set; } = null!;
-        public int Quantity { get; set; }
     }
+
 
 }
