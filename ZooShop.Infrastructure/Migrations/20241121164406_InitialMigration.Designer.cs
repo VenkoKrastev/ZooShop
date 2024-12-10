@@ -11,7 +11,7 @@ using ZooShop.Infrastructure.Data;
 
 namespace ZooShop.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ZooShopDbContext))]
     [Migration("20241121164406_InitialMigration")]
     partial class InitialMigration
     {
