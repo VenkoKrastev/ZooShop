@@ -4,9 +4,9 @@ namespace ZooShop.Components
 {
     public class MainMenuComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
-            return await Task.FromResult<IViewComponentResult>(View());
+            return View();
         }
     }
 }
