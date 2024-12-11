@@ -2,20 +2,23 @@
 using System.ComponentModel.DataAnnotations;
 using static ZooShop.Infrastructure.Data.DataConstants;
 
-
 namespace ZooShop.Infrastructure.Data.Models
 {
-    public class Category
+    public class Accessory 
     {
         [Key]
         [Comment("The current Category's Identifier")]
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(CategoryMaxLength)]
+        [MaxLength(AccessoriesMaxLength)]
         [Comment("The Name of product category")]
         public string Name { get; set; } = null!;
-        public ICollection<Product> Products { get; set; } = new List<Product>();
-        public ICollection<Accessory> Accessories { get; set; } = new List<Accessory>();
+
+        public List<Category> Category { get; set; } = new List<Category>();
+
+        public List<Product> Products { get; set; } = new List<Product>();
+
     }
+
 }

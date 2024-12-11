@@ -40,5 +40,11 @@ namespace ZooShop.Infrastructure.Data.Models
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; } = null!;
+
+        [Required]
+        public int AccessoryId { get; set; }
+
+        [ForeignKey(nameof(AccessoryId))]
+        public Accessory Accessory { get; set; } = null!;
     }
 }
