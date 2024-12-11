@@ -1,6 +1,16 @@
 using ZooShop.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ZooShop.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+//var connectionString = builder.Configuration.GetConnectionString("ZooShopDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ZooShopDbContextConnection' not found.");
+
+//builder.Services.AddDbContext<ZooShopDbContext>(options =>
+//    options.UseSqlServer(connectionString));
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<ZooShopDbContext>();
 
 builder.Services.AddApplicationDbContext(builder.Configuration);
 builder.Services.AddApplicationIdentity(builder.Configuration);
