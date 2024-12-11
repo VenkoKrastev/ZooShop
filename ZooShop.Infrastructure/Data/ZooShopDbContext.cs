@@ -14,6 +14,7 @@
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Accessory> Accessories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +35,14 @@
                 .HasOne(oi => oi.Product)
                 .WithMany()
                 .HasForeignKey(oi => oi.ProductId);
+
+            //modelBuilder.Entity<Accessory>()
+            //    .HasOne(a => a.Category)
+            //    .WithMany(c => c.) // Или добави отделна връзка за аксесоари, ако е необходимо
+            //    .HasForeignKey(a => a.CategoryId);
+
+
+
         }
     }
 

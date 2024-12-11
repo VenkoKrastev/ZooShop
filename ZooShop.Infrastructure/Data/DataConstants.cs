@@ -23,6 +23,10 @@
         public const int ApplicationUserLastNameMinLength = 1;
         public const int ApplicationUserLastNameMaxLength = 30;
 
+        public const int AccessoriesMinLength = 3;
+        public const int AccessoriesMaxLength = 3;
+
+
         public const string LengthErrorMessage = "{0} must be between {2} and {1} characters long!";
         public const string RangeErrorMessage = "{0} must be a number between {1} and {2}!";
 
