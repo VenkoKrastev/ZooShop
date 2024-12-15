@@ -1,0 +1,34 @@
+﻿@model ZooShop.Core.Models.DogCategoryViewModel
+
+
+<h2>Кучета</h2>
+
+<div>
+    <h3>Храна за кучета</h3>
+    <ul>
+        @foreach (var item in Model.DogFood)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+</div>
+
+<div>
+    <h3>Аксесоари за кучета</h3>
+    <ul>
+        @foreach (var item in Model.DogAccessories)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+</div>
+
+<div>
+    <h3>Всички продукти за кучета</h3>
+    <ul>
+        @foreach (var item in Model.AllDogProducts)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+</div>

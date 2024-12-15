@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
 using ZooShop.Infrastructure.Data;
+using ZooShop.Infrastructure.Data.Models;
 
 namespace ZooShop.Extensions
 {
@@ -25,8 +25,22 @@ namespace ZooShop.Extensions
 
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration config)
         {
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                        .AddEntityFrameworkStores<ZooShopDbContext>();
+            services
+                .AddDefaultIdentity<IdentityUser>(options =>
+                {
+                    options.User.RequireUniqueEmail = true;
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ZooShopDbContext>();
+
+
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //            .AddEntityFrameworkStores<ZooShopDbContext>();
 
             return services;
         }
