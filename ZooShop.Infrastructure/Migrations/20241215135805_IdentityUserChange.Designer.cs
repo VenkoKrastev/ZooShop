@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZooShop.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using ZooShop.Infrastructure.Data;
 namespace ZooShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ZooShopDbContext))]
-    partial class ZooShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241215135805_IdentityUserChange")]
+    partial class IdentityUserChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -471,7 +473,7 @@ namespace ZooShop.Infrastructure.Migrations
                     b.HasOne("ZooShop.Infrastructure.Data.Models.Category", "Category")
                         .WithMany("Accessories")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -512,13 +514,13 @@ namespace ZooShop.Infrastructure.Migrations
                     b.HasOne("ZooShop.Infrastructure.Data.Models.Accessory", "Accessory")
                         .WithMany()
                         .HasForeignKey("AccessoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ZooShop.Infrastructure.Data.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Accessory");
