@@ -3,7 +3,71 @@
 @using System.Security.Claims
 
 
-<ul class="navbar-nav flex-grow-1">
+<ul class="navbar-nav">
+    <!-- Падащо меню за Кучета -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Кучета
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownDogs">
+            <li><a class="dropdown-item" href="/Product?category=DogFood">Храна</a></li>
+            <li><a class="dropdown-item" href="/Accessory?category=Dog">Аксесоари</a></li>
+            <li><a class="dropdown-item" href="/Product?category=Dog">Всичко</a></li>
+        </ul>
+    </li>
+
+    <!-- Падащо меню за Котки -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCats" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Котки
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownCats">
+            <li><a class="dropdown-item" href="/Product?category=CatFood">Храна</a></li>
+            <li><a class="dropdown-item" href="/Accessory?category=Cat">Аксесоари</a></li>
+            <li><a class="dropdown-item" href="/Product?category=Cat">Всичко</a></li>
+        </ul>
+    </li>
+
+    <!-- Падащо меню за Рибки -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFish" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Рибки
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownFish">
+            <li><a class="dropdown-item" href="/Product?category=FishFood">Храна</a></li>
+            <li><a class="dropdown-item" href="/Accessory?category=Fish">Аксесоари</a></li>
+            <li><a class="dropdown-item" href="/Product?category=Fish">Всичко</a></li>
+        </ul>
+    </li>
+
+    <!-- Падащо меню за Гризачи -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRodents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Гризачи
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownRodents">
+            <li><a class="dropdown-item" href="/Product?category=RodentFood">Храна</a></li>
+            <li><a class="dropdown-item" href="/Accessory?category=Rodent">Аксесоари</a></li>
+            <li><a class="dropdown-item" href="/Product?category=Rodent">Всичко</a></li>
+        </ul>
+    </li>
+
+    <!-- Падащо меню за Птици -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBirds" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Птици
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownBirds">
+            <li><a class="dropdown-item" href="/Product?category=BirdFood">Храна</a></li>
+            <li><a class="dropdown-item" href="/Accessory?category=Bird">Аксесоари</a></li>
+            <li><a class="dropdown-item" href="/Product?category=Bird">Всичко</a></li>
+        </ul>
+    </li>
+</ul>
+
+
+
+@* <ul class="navbar-nav flex-grow-1">
     
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="All">Кучета</a>
@@ -39,4 +103,4 @@
     }
     
 
-</ul>
+</ul> *@
