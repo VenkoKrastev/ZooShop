@@ -12,17 +12,32 @@ using ZooShop.Infrastructure.Data;
 namespace ZooShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ZooShopDbContext))]
-    [Migration("20241210172042_AddAccessory")]
-    partial class AddAccessory
+    [Migration("20241215113859_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.33")
+                .HasAnnotation("ProductVersion", "6.0.35")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("AccessoryCategory", b =>
+                {
+                    b.Property<int>("AccessoriesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AccessoriesId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("AccessoryCategory");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -159,6 +174,26 @@ namespace ZooShop.Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Accessory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("The current Category's Identifier");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)")
+                        .HasComment("The Name of product category");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Accessories");
                 });
 
             modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.ApplicationUser", b =>
@@ -313,6 +348,9 @@ namespace ZooShop.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AccessoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -321,10 +359,6 @@ namespace ZooShop.Infrastructure.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)")
                         .HasComment("Product details");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -339,6 +373,7 @@ namespace ZooShop.Infrastructure.Migrations
                         .HasComment("The name of product");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasComment("The current Products price");
 
@@ -348,11 +383,11 @@ namespace ZooShop.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccessoryId");
+
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
                 });
 
             modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Review", b =>
@@ -380,16 +415,19 @@ namespace ZooShop.Infrastructure.Migrations
                     b.ToTable("Reviews");
                 });
 
-            modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Accessory", b =>
+            modelBuilder.Entity("AccessoryCategory", b =>
                 {
-                    b.HasBaseType("ZooShop.Infrastructure.Data.Models.Product");
+                    b.HasOne("ZooShop.Infrastructure.Data.Models.Accessory", null)
+                        .WithMany()
+                        .HasForeignKey("AccessoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int?>("CategoryId1")
-                        .HasColumnType("int");
-
-                    b.HasIndex("CategoryId1");
-
-                    b.HasDiscriminator().HasValue("Accessory");
+                    b.HasOne("ZooShop.Infrastructure.Data.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -475,11 +513,19 @@ namespace ZooShop.Infrastructure.Migrations
 
             modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Product", b =>
                 {
+                    b.HasOne("ZooShop.Infrastructure.Data.Models.Accessory", "Accessory")
+                        .WithMany("Products")
+                        .HasForeignKey("AccessoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ZooShop.Infrastructure.Data.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Accessory");
 
                     b.Navigation("Category");
                 });
@@ -497,15 +543,11 @@ namespace ZooShop.Infrastructure.Migrations
 
             modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Accessory", b =>
                 {
-                    b.HasOne("ZooShop.Infrastructure.Data.Models.Category", null)
-                        .WithMany("Accessories")
-                        .HasForeignKey("CategoryId1");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Category", b =>
                 {
-                    b.Navigation("Accessories");
-
                     b.Navigation("Products");
                 });
 
