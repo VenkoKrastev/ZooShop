@@ -42,7 +42,7 @@ namespace ZooShop.Infrastructure.Data.Models
         public Category Category { get; set; } = null!;
 
         [Required]
-        public int AccessoryId { get; set; }
+        public int AccessoryId { get; set; } 
 
         [ForeignKey(nameof(AccessoryId))]
         public Accessory Accessory { get; set; } = null!;

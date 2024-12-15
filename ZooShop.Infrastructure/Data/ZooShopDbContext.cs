@@ -20,31 +20,31 @@
         {
             base.OnModelCreating(modelBuilder);
 
-            // Пример за релации
+            // Конфигуриране на Price
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)");
+
+            // Връзка между аксесоари и категории с NO ACTION при изтриване
+            modelBuilder.Entity<Accessory>()
+                .HasOne(a => a.Category)
+                .WithMany(c => c.Accessories)
+                .HasForeignKey(a => a.CategoryId)
+                .OnDelete(DeleteBehavior.NoAction); 
+
+            // Връзка между продукти и категории с NO ACTION при изтриване
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
-                .HasForeignKey(p => p.CategoryId);
+                .HasForeignKey(p => p.CategoryId)
+                .OnDelete(DeleteBehavior.NoAction); 
 
+            // Връзка между продукти и аксесоари с NO ACTION при изтриване
             modelBuilder.Entity<Product>()
-            .Property(p => p.Price)
-            .HasPrecision(18, 2);
-
-            modelBuilder.Entity<OrderItem>()
-                .HasOne(oi => oi.Order)
-                .WithMany(o => o.Items)
-                .HasForeignKey(oi => oi.OrderId);
-
-            modelBuilder.Entity<OrderItem>()
-                .HasOne(oi => oi.Product)
-                .WithMany()
-                .HasForeignKey(oi => oi.ProductId);
-
-            //modelBuilder.Entity<Accessory>()
-            //    .HasOne(a => a.Category)
-            //    .WithMany(c => c.) // Или добави отделна връзка за аксесоари, ако е необходимо
-            //    .HasForeignKey(a => a.CategoryId);
-
+                .HasOne(p => p.Accessory)
+                .WithMany() 
+                .HasForeignKey(p => p.AccessoryId)
+                .OnDelete(DeleteBehavior.NoAction); 
 
 
         }
