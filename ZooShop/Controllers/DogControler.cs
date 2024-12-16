@@ -17,12 +17,8 @@ namespace ZooShop.Controllers
 
         public IActionResult Index()
         {
-            var dogCategoryViewModel = new DogCategoryViewModel
-            {
-                DogFood = _context.Products.Where(p => p.Category.Name == "DogFood").ToList(),
-                DogAccessories = _context.Accessories.Where(a => a.Category.Name == "Dog").ToList(),
-                AllDogProducts = _context.Products.Where(p => p.Category.Name == "Dog").ToList()
-            };
+            var dogCategoryViewModel = new DogCategoryViewModel();
+           
 
             return View(dogCategoryViewModel);
         }
