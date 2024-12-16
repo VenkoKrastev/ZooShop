@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ZooShop.Core.Contracts;
 using ZooShop.Core.Enums;
 using ZooShop.Core.Extensions;
 using ZooShop.Core.Models;
@@ -8,7 +9,7 @@ using ZooShop.Infrastructure.Data.Models;
 
 namespace ZooShop.Core.Services
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
         private readonly IRepository repository;
 
@@ -28,7 +29,6 @@ namespace ZooShop.Core.Services
                     Price = p.Price
                 })
                 .ToListAsync();
-
         }
 
         public async Task<ProductQueryServiceModel> AllAsync(string? imageUrl,
@@ -62,8 +62,6 @@ namespace ZooShop.Core.Services
                 .Take(productPerPage)
                 .ProjectToProductServiceModel()
                 .ToListAsync();
-
-
 
             int totalProducts = await productToShow.CountAsync();
 

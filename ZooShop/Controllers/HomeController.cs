@@ -35,12 +35,7 @@ namespace ZooShop.Controllers
             }
             var model = await productService.LastThreeProduct();
             return View(model);
-            //var products = _context.Products
-            //                   .OrderByDescending(p => p.Id)  // Подреждаме по най-новите продукти
-            //                   .Take(5)  // Вземаме само последните 5 продукта
-            //                   .ToList();
-
-            //return View(products);
+            
         }
 
         [AllowAnonymous]
