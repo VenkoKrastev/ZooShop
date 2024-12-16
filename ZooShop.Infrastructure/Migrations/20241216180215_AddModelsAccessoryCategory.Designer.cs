@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZooShop.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using ZooShop.Infrastructure.Data;
 namespace ZooShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ZooShopDbContext))]
-    partial class ZooShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241216180215_AddModelsAccessoryCategory")]
+    partial class AddModelsAccessoryCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,15 +151,15 @@ namespace ZooShop.Infrastructure.Migrations
                         {
                             Id = "c2f14bf7-ffdd-47a4-90b3-f2309486fae9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b1b6deb9-f8f2-4feb-8a5d-563e4bcffd2e",
+                            ConcurrencyStamp = "8ebb1b48-ea2f-405a-8519-98bddfd0b75c",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPKAWNHvyC0HlwArhap+IiBzMM+0aI8YE+Vu68JvCGMwquBaSB53tkYchLBdHAK9pQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAl9LxxpKQNcZLufe/h6Aqi0xcpXgQw0MJMnGgz9eGfH/cJ7AsiFXo/cf2uwXbVc8A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a500b915-eb7d-43a6-b780-f19fb003a96e",
+                            SecurityStamp = "a7fa3235-9175-4752-991d-e8897885d5d9",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -165,15 +167,15 @@ namespace ZooShop.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "97fb8f5a-1d4f-4dae-bbbf-0ad8183b2086",
+                            ConcurrencyStamp = "99c22cab-710a-490e-82d7-0e00750cfea6",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@GMAIL.COM",
                             NormalizedUserName = "GUEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPtqxtcxU0RgS30KEl2+kG8tSTbsMLoQWDKkKaD0JT2QWMDyyXY2RzMeAJQUKmCXFw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDfBYqZw6u3esy5vq/opnti9vJMODmuferfm/kGpkiDW5BVzYT6cTl/m/xe216nj7Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "79651704-30d7-4418-b386-00e2c534ce6d",
+                            SecurityStamp = "acbaece3-8365-49be-b942-af18439f04e0",
                             TwoFactorEnabled = false,
                             UserName = "guest@gmail.com"
                         });

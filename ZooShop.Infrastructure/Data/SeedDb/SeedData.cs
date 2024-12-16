@@ -12,8 +12,11 @@ namespace ZooShop.Infrastructure.Data.SeedDb
             SeedProduct();
             SeedCategory();
             SeedAccessory();
+            SeedAccessoryCategory();
 
         }
+
+       
 
         //Users
         public IdentityUser AdminUser { get; set; }
@@ -38,8 +41,17 @@ namespace ZooShop.Infrastructure.Data.SeedDb
         public Accessory Aquarium { get; set; }
         public Accessory Cage { get; set; }
 
+        public AccessoryCategory hrana { get; set; }
 
 
+        private void SeedAccessoryCategory()
+        {
+            hrana = new AccessoryCategory()
+            {
+                CategoriesId = 1,
+                AccessoriesId = 3,
+            };
+        }
         private void SeedAccessory()
         {
             Bed = new Accessory()

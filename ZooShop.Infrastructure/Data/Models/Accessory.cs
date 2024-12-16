@@ -15,6 +15,9 @@ namespace ZooShop.Infrastructure.Data.Models
         [Comment("The Name of product category")]
         public string Name { get; set; } = null!;
 
+        public ICollection<Product> Products { get; set; } = new List<Product>();
+        public ICollection<AccessoryCategory> AccessoryCategories { get; set; } = new List<AccessoryCategory>();
+
     }
 
 }
