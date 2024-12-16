@@ -15,7 +15,7 @@ namespace ZooShop.Infrastructure.Data.SeedDb
         {
             var data = new SeedData();
 
-            builder.HasData(new Accessory[] {data.Bed});
+            builder.HasData(new Accessory[] {data.Bed, data.Aquarium, data.Strap, data.Cage, data.Food});
         }
     }
 }

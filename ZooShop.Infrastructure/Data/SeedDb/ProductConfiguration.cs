@@ -29,7 +29,7 @@ namespace ZooShop.Infrastructure.Data.SeedDb
             
             var data = new SeedData();
 
-            builder.HasData(new Product[] { data.Purina });
+            builder.HasData(new Product[] { data.Purina, data.AquaElAquarium, data.FerplastMemorOne, data.Whiskas, data.FleaAndThickCollar});
 
         }
     }
