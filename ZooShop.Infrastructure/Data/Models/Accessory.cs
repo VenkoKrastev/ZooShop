@@ -15,11 +15,13 @@ namespace ZooShop.Infrastructure.Data.Models
         [Comment("The Name of product category")]
         public string Name { get; set; } = null!;
 
+        [Required]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category Category { get; set; } 
 
-        // Връзка към продуктите (ако аксесоарът е продукт)
-        //public List<Product> Products { get; set; } = new List<Product>();
+
+
+
 
     }
 
