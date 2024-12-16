@@ -1,9 +1,80 @@
 ﻿@using ZooShop.Components
 @* @using Microsoft.AspNetCore.Identity *@
 @using System.Security.Claims
+@inject ZooShop.Infrastructure.Data.ZooShopDbContext _context
+
 
 
 <ul class="navbar-nav">
+    @foreach (var animal in _context.Categories.ToList())  // Вземаме всички категории (животни)
+    {
+        var accessories = _context.AccessoryCategories
+        .Where(ac => ac.CategoriesId == animal.Id)  // Вземаме аксесоарите за даденото животно
+        .Select(ac => ac.Accessory)  // Вземаме самите аксесоари
+        .ToList();
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown@animal.Name" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @animal.Name
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown@animal.Name">
+                @foreach (var accessory in accessories)
+                {
+                    <!-- Тук добавяме линк за всеки аксесоар -->
+                    <li>
+                        <a class="dropdown-item" href="/Accessory/Index?category=@animal.Name&accessory=@accessory.Name">
+                            @accessory.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <ul class="navbar-nav">
+    @foreach (var animal in _context.Categories.ToList())  // Вземаме всички категории (животни)
+    {
+        var accessories = _context.AccessoryCategories
+        .Where(ac => ac.CategoriesId == animal.Id)
+        .Select(ac => ac.Accessory)
+        .ToList();
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown@animal.Name" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @animal.Name
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown@animal.Name">
+                @foreach (var accessory in accessories)
+                {
+                    <li><a class="dropdown-item" href="/Accessory?category=@animal.Name&accessory=@accessory.Name">@accessory.Name</a></li>
+                }
+            </ul>
+        </li>
+    }
+</ul> *@
+
+
+
+
+
+
+
+@* <ul class="navbar-nav">
     <!-- Падащо меню за Кучета -->
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,44 +134,5 @@
             <li><a class="dropdown-item" href="/Product?category=Bird">Всичко</a></li>
         </ul>
     </li>
-</ul>
-
-
-
-@* <ul class="navbar-nav flex-grow-1">
-    
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Dog" asp-action="DogCategory">Кучета</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="All">Котки</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="All">Рибки</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="All">Гризачи</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Accessory" asp-action="All">Аксесоари</a>
-    </li>
-    @{
-        
-        string desiredUserId = "c2f14bf7-ffdd-47a4-90b3-f2309486fae9";
-
-        
-        var userId = (User.Identity.IsAuthenticated) ? User.FindFirstValue(ClaimTypes.NameIdentifier) : null;
-
-        
-        bool isDesiredUser = (userId == desiredUserId);
-    }
-
-    @if (isDesiredUser)
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Add">Добавяне на продукти</a>
-        </li>
-    }
-    
-
 </ul> *@
+

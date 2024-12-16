@@ -1,0 +1,22 @@
+﻿@model ZooShop.Infrastructure.Data.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h2>Подробности за продукт: @Model.Name</h2>
+
+<div>
+    <h4>Цена: @Model.Price лв.</h4>
+    <p>Описание: @Model.Description</p>
+    <p>Наличност: @Model.StockQuantity</p>
+    <p><img src="@Model.ImageUrl" alt="@Model.Name" style="width: 300px; height: auto;" /></p>
+    <p>Цена: @Model.Price лв.</p>
+
+    <!-- Бутон за добавяне в количката (по-късно ще работим по него) -->
+    <form method="post" action="@Url.Action("AddToCart", "Cart", new { productId = Model.Id })">
+        <button type="submit" class="btn btn-success">Добави в количката</button>
+    </form>
+</div>
+
+<a href="@Url.Action("Index", "Accessory", new { category = Model.Category.Name, accessory = Model.Accessory.Name })" class="btn btn-secondary">Назад</a>
