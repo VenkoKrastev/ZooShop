@@ -26,12 +26,6 @@
             builder.ApplyConfiguration(new AccessoryConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
 
-            builder.Entity<Accessory>()
-                .HasOne(a => a.Category)
-                .WithMany(c => c.Accessories)
-                .HasForeignKey(a => a.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
-
 
             base.OnModelCreating(builder);
 

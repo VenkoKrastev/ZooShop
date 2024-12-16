@@ -7,21 +7,13 @@ namespace ZooShop.Infrastructure.Data.Models
     public class Accessory 
     {
         [Key]
-        [Comment("The current Category's Identifier")]
+        [Comment("The current Accessory's Identifier")]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(AccessoriesMaxLength)]
         [Comment("The Name of product category")]
         public string Name { get; set; } = null!;
-
-        [Required]
-        public int CategoryId { get; set; }
-        public Category Category { get; set; } 
-
-
-
-
 
     }
 
