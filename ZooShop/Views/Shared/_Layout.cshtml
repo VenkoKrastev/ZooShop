@@ -19,6 +19,11 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     @await Component.InvokeAsync(nameof(MainMenuComponent))
+                    <!-- Търсачката -->
+                    <form method="get" asp-controller="Home" asp-action="Search" class="d-flex ms-3" role="search">
+                        <input name="searchTerm" class="form-control me-2" type="search" placeholder="Търси продукти..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Търси</button>
+                    </form>
                     <partial name="_LoginPartial" />
                 </div>
             </div>

@@ -1,4 +1,48 @@
-﻿@model List<ZooShop.Infrastructure.Data.Models.Product>  
+﻿@using System.Security.Claims
+@model IEnumerable<ZooShop.Infrastructure.Data.Models.Product>
+
+@{
+    ViewBag.Title = "Всики продукти";
+}
+
+<h1 class="text-center">@ViewBag.Title</h1>
+<hr />
+
+<div class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(p => p.Name)
+        </th>
+    </tr>
+
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => product.Name)
+            </td>
+            <td>
+                <img src="@product.ImageUrl" alt="Product Image" style="max-width: 250px; max-height: 250px;" />
+            </td>
+            <td>
+                Цена: @Html.DisplayFor(modelItem => product.Price) лева <br />
+                Наличност: @Html.DisplayFor(modelItem => product.StockQuantity) бр.
+            </td>
+
+        </tr>
+    }
+
+</div>
+
+
+
+
+
+
+
+
+
+@* @model List<ZooShop.Infrastructure.Data.Models.Product>  
 
 @{
     ViewData["Title"] = "Продукти за " + ViewBag.CategoryName + " - " + ViewBag.AccessoryName;
@@ -22,5 +66,6 @@
 }
 else
 {
-    <p>Няма продукти за този аксесоар и категория.</p>
+    <p>Няма продукти за тaзи категория.</p>
 }
+ *@

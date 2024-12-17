@@ -1,16 +1,19 @@
-﻿@using ZooShop.Components
+﻿@using Microsoft.EntityFrameworkCore
+@using ZooShop.Components
 @* @using Microsoft.AspNetCore.Identity *@
 @using System.Security.Claims
 @inject ZooShop.Infrastructure.Data.ZooShopDbContext _context
 
 
-
-<ul class="navbar-nav">
-    @foreach (var animal in _context.Categories.ToList())  // Вземаме всички категории (животни)
+<ul class="navbar-nav ms-left">
+    @foreach (var animal in _context.Categories
+    .Include(c => c.AccessoryCategories) // Зареждаме връзката AccessoryCategories
+    .ThenInclude(ac => ac.Accessory)     // Зареждаме самите аксесоари
+    .ToList())
     {
-        var accessories = _context.AccessoryCategories
-        .Where(ac => ac.CategoriesId == animal.Id)  // Вземаме аксесоарите за даденото животно
-        .Select(ac => ac.Accessory)  // Вземаме самите аксесоари
+        // Извличаме списък с аксесоарите
+        var accessories = animal.AccessoryCategories
+        .Select(ac => ac.Accessory) // Взимаме аксесоарите
         .ToList();
 
         <li class="nav-item dropdown">
@@ -18,14 +21,20 @@
                 @animal.Name
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown@animal.Name">
-                @foreach (var accessory in accessories)
+                @if (accessories.Any())
                 {
-                    <!-- Тук добавяме линк за всеки аксесоар -->
-                    <li>
-                        <a class="dropdown-item" href="/Accessory/Index?category=@animal.Name&accessory=@accessory.Name">
-                            @accessory.Name
-                        </a>
-                    </li>
+                    @foreach (var accessory in accessories)
+                    {
+                        <li>
+                            <a class="dropdown-item" href="/Accessory/Index?category=@animal.Name&accessory=@accessory.Name">
+                                @accessory.Name
+                            </a>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li><span class="dropdown-item text-muted">Няма аксесоари</span></li>
                 }
             </ul>
         </li>
@@ -36,103 +45,4 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-@* <ul class="navbar-nav">
-    @foreach (var animal in _context.Categories.ToList())  // Вземаме всички категории (животни)
-    {
-        var accessories = _context.AccessoryCategories
-        .Where(ac => ac.CategoriesId == animal.Id)
-        .Select(ac => ac.Accessory)
-        .ToList();
-
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown@animal.Name" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                @animal.Name
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown@animal.Name">
-                @foreach (var accessory in accessories)
-                {
-                    <li><a class="dropdown-item" href="/Accessory?category=@animal.Name&accessory=@accessory.Name">@accessory.Name</a></li>
-                }
-            </ul>
-        </li>
-    }
-</ul> *@
-
-
-
-
-
-
-
-@* <ul class="navbar-nav">
-    <!-- Падащо меню за Кучета -->
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Кучета
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownDogs">
-            <li><a class="dropdown-item" href="/Product?category=DogFood">Храна</a></li>
-            <li><a class="dropdown-item" href="/Accessory?category=Dog">Аксесоари</a></li>
-            <li><a class="dropdown-item" href="/Product?category=Dog">Всичко</a></li>
-        </ul>
-    </li>
-
-    <!-- Падащо меню за Котки -->
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCats" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Котки
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownCats">
-            <li><a class="dropdown-item" href="/Product?category=CatFood">Храна</a></li>
-            <li><a class="dropdown-item" href="/Accessory?category=Cat">Аксесоари</a></li>
-            <li><a class="dropdown-item" href="/Product?category=Cat">Всичко</a></li>
-        </ul>
-    </li>
-
-    <!-- Падащо меню за Рибки -->
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFish" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Рибки
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownFish">
-            <li><a class="dropdown-item" href="/Product?category=FishFood">Храна</a></li>
-            <li><a class="dropdown-item" href="/Accessory?category=Fish">Аксесоари</a></li>
-            <li><a class="dropdown-item" href="/Product?category=Fish">Всичко</a></li>
-        </ul>
-    </li>
-
-    <!-- Падащо меню за Гризачи -->
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRodents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Гризачи
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownRodents">
-            <li><a class="dropdown-item" href="/Product?category=RodentFood">Храна</a></li>
-            <li><a class="dropdown-item" href="/Accessory?category=Rodent">Аксесоари</a></li>
-            <li><a class="dropdown-item" href="/Product?category=Rodent">Всичко</a></li>
-        </ul>
-    </li>
-
-    <!-- Падащо меню за Птици -->
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBirds" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Птици
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownBirds">
-            <li><a class="dropdown-item" href="/Product?category=BirdFood">Храна</a></li>
-            <li><a class="dropdown-item" href="/Accessory?category=Bird">Аксесоари</a></li>
-            <li><a class="dropdown-item" href="/Product?category=Bird">Всичко</a></li>
-        </ul>
-    </li>
-</ul> *@
 

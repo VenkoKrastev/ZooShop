@@ -1,0 +1,31 @@
+﻿@using ZooShop.Core.Models
+@model IEnumerable<ProductIndexServiceModel>
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>Резултати от търсенето</h2>
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Price лв.</p>
+                        <a href="@Url.Action("Details", "Product", new { id = product.Id })" class="btn btn-primary">Виж повече</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>Няма намерени продукти по зададения критерий.</p>
+}

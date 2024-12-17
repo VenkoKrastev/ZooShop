@@ -1,0 +1,77 @@
+﻿
+
+
+
+
+
+
+
+@* 
+@model List<ZooShop.Infrastructure.Data.Models.Product>
+
+@{
+    ViewData["Title"] = "Продукти за " + ViewBag.CategoryName + " - " + ViewBag.AccessoryName;
+}
+
+<h2>Продукти за: @ViewBag.CategoryName - @ViewBag.AccessoryName</h2>
+
+@if (Model != null && Model.Any())
+{
+    <div class="product-list">
+        @foreach (var product in Model)
+        {
+            <div class="product-item">
+                <div class="product-img">
+                    <img src="@product.ImageUrl" alt="@product.Name" style="max-width: 200px; height: auto;" />
+                </div>
+                <div class="product-details">
+                    <h4>@product.Name</h4>
+                    <p>Цена: @product.Price лв.</p>
+                    <p><a href="@Url.Action("Details", "Product", new { id = product.Id })" class="btn btn-info">Подробности</a></p>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>Няма продукти за тази категория или аксесоар.</p>
+} *@
+
+
+
+
+
+
+
+
+
+
+@* @using ZooShop.Infrastructure.Data.Models
+@model IEnumerable<Product>
+@* @{
+    var categoryName = ViewBag.CategoryName;
+}
+
+<h2>Продукти за категория: @categoryName</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-warning">@ViewBag.Message</div>
+}
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="@product.ImageUrl" alt="@product.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <a href="@Url.Action("Details", "Product", new { id = product.Id })" class="btn btn-primary">Виж повече</a>
+                </div>
+            </div>
+        </div>
+    }
+</div> *@ 

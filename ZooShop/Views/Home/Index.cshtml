@@ -1,10 +1,9 @@
 ﻿@using ZooShop.Core.Models
-
-@model List<ZooShop.Infrastructure.Data.Models.Product>
+@model List<ZooShop.Core.Models.ProductIndexServiceModel>
 
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "SIMBA";
 }
 
 <div class="text-center">
@@ -12,23 +11,36 @@
     
 </div>
 
+<div class="mb-xxl-5"></div>
+
+
+<style>
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: red; 
+    }
+
+        .carousel-control-prev-icon:after,
+        .carousel-control-next-icon:after {
+            color: white; 
+        }
+</style>
+
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         @for (int i = 0; i < Model.Count(); i++)
         {
             var product = Model[i];
-              <!-- Използваме Model, защото списъкът идва от контролера -->
-                <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
-                    <img class="d-block mx-auto" style="max-width: 500px; max-height: 500px;"
-                         src="@product.ImageUrl" alt="@product.Name">  <!-- Изображение на продукта -->
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>
-                            <a class="btn btn-primary add-to-cart" data-product-id="@product.Id" href="@Url.Action("AddToCart", "Cart", new { productId = product.Id })">
-                                Добави в количката - @product.Price лв.
-                            </a>
-                        </h5>
-                    </div>
+            <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
+                <img class="d-block mx-auto" style="max-width: 500px; max-height: 500px;"
+                     src="@product.ImageUrl" alt="@product.Price">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>
+                        <a class="btn btn-primary add-to-cart" data-product-id="@product.Id" href="@Url.Action("AddToCart", "Cart", new { productId = @product.Id })">Добави в количката - @product.Price лв.</a>
+                    </h5>
                 </div>
+            </div>
         }
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -40,3 +52,7 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
+
+
+
+
