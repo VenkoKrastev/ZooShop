@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZooShop.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using ZooShop.Infrastructure.Data;
 namespace ZooShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ZooShopDbContext))]
-    partial class ZooShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241217182330_AddICollectionInProductForAccessoryCategory")]
+    partial class AddICollectionInProductForAccessoryCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,15 +151,15 @@ namespace ZooShop.Infrastructure.Migrations
                         {
                             Id = "c2f14bf7-ffdd-47a4-90b3-f2309486fae9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3c9a3f2b-d850-45bf-9031-be413bb53845",
+                            ConcurrencyStamp = "1fe099c0-22cf-43b4-ad2d-c1a2a6332fd4",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKiaXtzoL0QBJaey+b7k5K8O3y2FkLnZA9mVaO4I+9n+F8lulpLVPYw4BHZTPmm6dw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMy9pQ0DgGbgZEJqoEkRx8RhXk6LsAGXU3/B/ISY1iQSrMJta4n/c6KTcsSdA7I7vw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e6827427-0372-48a2-8eb1-556a574bea2f",
+                            SecurityStamp = "56de4bee-a7b6-4033-ae94-14f9e8370e8c",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -165,15 +167,15 @@ namespace ZooShop.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ade948df-8bd7-460e-8f52-158c0d0cf7e3",
+                            ConcurrencyStamp = "a0f635e7-4f2e-4aa9-ac89-9480ae6a31bb",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@GMAIL.COM",
                             NormalizedUserName = "GUEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGnRvUMcc+cip8loAql6/4pXxxVUi6j+OUihJa2PPiN5LTg3QLqZcuJFkjU+CEEagw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGk1jX+tTNqLyiYE0JQby2d9JMAgCzdi0AGN48s33kMJD8iODoeb6pCzA39UyBNe0g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e93a4a31-ed0e-4465-ad71-65f7750386f4",
+                            SecurityStamp = "34815c02-63c6-46a3-bd45-e544401063c6",
                             TwoFactorEnabled = false,
                             UserName = "guest@gmail.com"
                         });
@@ -518,7 +520,7 @@ namespace ZooShop.Infrastructure.Migrations
                             AccessoryId = 4,
                             CategoryId = 3,
                             Description = "Перфектен за декорация на рестуранти, рецепции, офиси и за дома с изчистен и модерен дизайн. Предлагат се в 4 различни цвята и размери за перфектно съчетаване с вашето обзавеждане:",
-                            ImageUrl = "https://co.nice-cdn.com/upload/image/product/large/default/nailberry-lak-za-nokti-fuchsia-in-love-loxygene-15-ml-447434-bg.jpg",
+                            ImageUrl = "https://www.zoomagazinche.bg/goliam-akvarium-za-ribi-190-litra-ferplast-dubai-100.html",
                             Name = "AquaEl Голям аквариум за риби 190 литра",
                             Price = 750.3m,
                             StockQuantity = 10

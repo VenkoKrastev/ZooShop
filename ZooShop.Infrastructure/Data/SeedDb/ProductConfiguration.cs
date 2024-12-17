@@ -22,7 +22,7 @@ namespace ZooShop.Infrastructure.Data.SeedDb
 
             builder
                 .HasOne(p => p.Accessory)
-                .WithMany()
+                .WithMany(a => a.Products)
                 .HasForeignKey(p => p.AccessoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 

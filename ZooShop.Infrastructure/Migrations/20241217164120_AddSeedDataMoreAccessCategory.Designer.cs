@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZooShop.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using ZooShop.Infrastructure.Data;
 namespace ZooShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ZooShopDbContext))]
-    partial class ZooShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241217164120_AddSeedDataMoreAccessCategory")]
+    partial class AddSeedDataMoreAccessCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,15 +151,15 @@ namespace ZooShop.Infrastructure.Migrations
                         {
                             Id = "c2f14bf7-ffdd-47a4-90b3-f2309486fae9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3c9a3f2b-d850-45bf-9031-be413bb53845",
+                            ConcurrencyStamp = "2650d1b0-6167-4d16-9382-786843769355",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKiaXtzoL0QBJaey+b7k5K8O3y2FkLnZA9mVaO4I+9n+F8lulpLVPYw4BHZTPmm6dw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENrFsAEiYJbprUKUo4pg1xdlqFCCeLYSfX80sI5qIxbBrG/ZafmbdE/h12ZgWohiwQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e6827427-0372-48a2-8eb1-556a574bea2f",
+                            SecurityStamp = "b297c182-34fc-4ff1-995a-34b6a1ce13f1",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -165,15 +167,15 @@ namespace ZooShop.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ade948df-8bd7-460e-8f52-158c0d0cf7e3",
+                            ConcurrencyStamp = "f0b706a6-ca3c-4487-8d6b-c14fc8203a53",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@GMAIL.COM",
                             NormalizedUserName = "GUEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGnRvUMcc+cip8loAql6/4pXxxVUi6j+OUihJa2PPiN5LTg3QLqZcuJFkjU+CEEagw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK4mbrrQF0M0AgY9P9nNliFHqGeajFJRDFjAdw0G+1dsbmnkzDSi+X+2x6vTDFk5zQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e93a4a31-ed0e-4465-ad71-65f7750386f4",
+                            SecurityStamp = "48725ba2-9735-4b54-9bc8-24185f80dc05",
                             TwoFactorEnabled = false,
                             UserName = "guest@gmail.com"
                         });
@@ -322,38 +324,13 @@ namespace ZooShop.Infrastructure.Migrations
                     b.Property<int>("AccessoriesId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id", "CategoriesId", "AccessoriesId");
 
                     b.HasIndex("AccessoriesId");
 
                     b.HasIndex("CategoriesId");
 
-                    b.HasIndex("ProductId");
-
                     b.ToTable("AccessoryCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoriesId = 1,
-                            AccessoriesId = 3
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoriesId = 2,
-                            AccessoriesId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoriesId = 4,
-                            AccessoriesId = 5
-                        });
                 });
 
             modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Category", b =>
@@ -463,6 +440,9 @@ namespace ZooShop.Infrastructure.Migrations
                     b.Property<int>("AccessoryId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("AccessoryId1")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -496,6 +476,8 @@ namespace ZooShop.Infrastructure.Migrations
 
                     b.HasIndex("AccessoryId");
 
+                    b.HasIndex("AccessoryId1");
+
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
@@ -518,7 +500,7 @@ namespace ZooShop.Infrastructure.Migrations
                             AccessoryId = 4,
                             CategoryId = 3,
                             Description = "Перфектен за декорация на рестуранти, рецепции, офиси и за дома с изчистен и модерен дизайн. Предлагат се в 4 различни цвята и размери за перфектно съчетаване с вашето обзавеждане:",
-                            ImageUrl = "https://co.nice-cdn.com/upload/image/product/large/default/nailberry-lak-za-nokti-fuchsia-in-love-loxygene-15-ml-447434-bg.jpg",
+                            ImageUrl = "https://www.zoomagazinche.bg/goliam-akvarium-za-ribi-190-litra-ferplast-dubai-100.html",
                             Name = "AquaEl Голям аквариум за риби 190 литра",
                             Price = 750.3m,
                             StockQuantity = 10
@@ -665,10 +647,6 @@ namespace ZooShop.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ZooShop.Infrastructure.Data.Models.Product", null)
-                        .WithMany("AccessoryCategories")
-                        .HasForeignKey("ProductId");
-
                     b.Navigation("Accessory");
 
                     b.Navigation("Category");
@@ -707,10 +685,14 @@ namespace ZooShop.Infrastructure.Migrations
             modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Product", b =>
                 {
                     b.HasOne("ZooShop.Infrastructure.Data.Models.Accessory", "Accessory")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("AccessoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("ZooShop.Infrastructure.Data.Models.Accessory", null)
+                        .WithMany("Products")
+                        .HasForeignKey("AccessoryId1");
 
                     b.HasOne("ZooShop.Infrastructure.Data.Models.Category", "Category")
                         .WithMany("Products")
@@ -751,11 +733,6 @@ namespace ZooShop.Infrastructure.Migrations
             modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Order", b =>
                 {
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Product", b =>
-                {
-                    b.Navigation("AccessoryCategories");
                 });
 #pragma warning restore 612, 618
         }

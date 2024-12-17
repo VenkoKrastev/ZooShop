@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZooShop.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using ZooShop.Infrastructure.Data;
 namespace ZooShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ZooShopDbContext))]
-    partial class ZooShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241217181001_SeedDataAccessCategory")]
+    partial class SeedDataAccessCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,15 +151,15 @@ namespace ZooShop.Infrastructure.Migrations
                         {
                             Id = "c2f14bf7-ffdd-47a4-90b3-f2309486fae9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3c9a3f2b-d850-45bf-9031-be413bb53845",
+                            ConcurrencyStamp = "ed47b3d0-667e-4d13-8adf-5727cd4e6867",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKiaXtzoL0QBJaey+b7k5K8O3y2FkLnZA9mVaO4I+9n+F8lulpLVPYw4BHZTPmm6dw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFnYegb3YwB1andnmvkJV/WFyCa5qsLJ33WVpBrdRP43kzN9rZQyS4S+AO9lPCqZGQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e6827427-0372-48a2-8eb1-556a574bea2f",
+                            SecurityStamp = "9b3e41f9-da14-4e1f-82f1-b3f2d41c6ea8",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -165,15 +167,15 @@ namespace ZooShop.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ade948df-8bd7-460e-8f52-158c0d0cf7e3",
+                            ConcurrencyStamp = "e641ff0e-31cd-412e-8468-4f8490e65e41",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@GMAIL.COM",
                             NormalizedUserName = "GUEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGnRvUMcc+cip8loAql6/4pXxxVUi6j+OUihJa2PPiN5LTg3QLqZcuJFkjU+CEEagw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBWvHU4z49SVh1FOTOokSZRMEnh7zIvr+GSEssspYPiiN8pcwNt8hAVisETNLozMWA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e93a4a31-ed0e-4465-ad71-65f7750386f4",
+                            SecurityStamp = "3e610501-68a8-4333-82b8-32bc78ff46ab",
                             TwoFactorEnabled = false,
                             UserName = "guest@gmail.com"
                         });
@@ -322,16 +324,11 @@ namespace ZooShop.Infrastructure.Migrations
                     b.Property<int>("AccessoriesId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id", "CategoriesId", "AccessoriesId");
 
                     b.HasIndex("AccessoriesId");
 
                     b.HasIndex("CategoriesId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("AccessoryCategories");
 
@@ -518,7 +515,7 @@ namespace ZooShop.Infrastructure.Migrations
                             AccessoryId = 4,
                             CategoryId = 3,
                             Description = "Перфектен за декорация на рестуранти, рецепции, офиси и за дома с изчистен и модерен дизайн. Предлагат се в 4 различни цвята и размери за перфектно съчетаване с вашето обзавеждане:",
-                            ImageUrl = "https://co.nice-cdn.com/upload/image/product/large/default/nailberry-lak-za-nokti-fuchsia-in-love-loxygene-15-ml-447434-bg.jpg",
+                            ImageUrl = "https://www.zoomagazinche.bg/goliam-akvarium-za-ribi-190-litra-ferplast-dubai-100.html",
                             Name = "AquaEl Голям аквариум за риби 190 литра",
                             Price = 750.3m,
                             StockQuantity = 10
@@ -665,10 +662,6 @@ namespace ZooShop.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ZooShop.Infrastructure.Data.Models.Product", null)
-                        .WithMany("AccessoryCategories")
-                        .HasForeignKey("ProductId");
-
                     b.Navigation("Accessory");
 
                     b.Navigation("Category");
@@ -751,11 +744,6 @@ namespace ZooShop.Infrastructure.Migrations
             modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Order", b =>
                 {
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("ZooShop.Infrastructure.Data.Models.Product", b =>
-                {
-                    b.Navigation("AccessoryCategories");
                 });
 #pragma warning restore 612, 618
         }

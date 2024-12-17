@@ -16,7 +16,6 @@ namespace ZooShop.Infrastructure.Data.SeedDb
 
         }
 
-       
 
         //Users
         public IdentityUser AdminUser { get; set; }
@@ -42,14 +41,29 @@ namespace ZooShop.Infrastructure.Data.SeedDb
         public Accessory Cage { get; set; }
 
         public AccessoryCategory hrana { get; set; }
-
+        public AccessoryCategory Leglo { get; set; }
+        public AccessoryCategory Kletka { get; set; }
 
         private void SeedAccessoryCategory()
         {
             hrana = new AccessoryCategory()
             {
+                Id = 1,
                 CategoriesId = 1,
                 AccessoriesId = 3,
+            };
+
+            Leglo = new AccessoryCategory()
+            {
+                Id = 2,
+                CategoriesId = 2,
+                AccessoriesId = 1
+            };
+            Kletka = new AccessoryCategory()
+            {
+                Id = 4,
+                CategoriesId = 4,
+                AccessoriesId = 5
             };
         }
         private void SeedAccessory()
@@ -169,7 +183,7 @@ namespace ZooShop.Infrastructure.Data.SeedDb
                 Price = 750.3m,
                 StockQuantity = 10,
                 Description = "Перфектен за декорация на рестуранти, рецепции, офиси и за дома с изчистен и модерен дизайн. Предлагат се в 4 различни цвята и размери за перфектно съчетаване с вашето обзавеждане:",
-                ImageUrl = "https://www.zoomagazinche.bg/goliam-akvarium-za-ribi-190-litra-ferplast-dubai-100.html",
+                ImageUrl = "https://co.nice-cdn.com/upload/image/product/large/default/nailberry-lak-za-nokti-fuchsia-in-love-loxygene-15-ml-447434-bg.jpg",
                 CategoryId = 3,
                 AccessoryId = 4
             };
