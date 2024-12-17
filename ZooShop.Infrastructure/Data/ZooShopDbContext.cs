@@ -27,9 +27,14 @@
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new AccessoryConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new AccessCategoryConfiguration());
+
+
+            //builder.Entity<AccessoryCategory>()
+            //   .HasKey(ac => ac.AccessoriesId); // Основен ключ
 
             builder.Entity<AccessoryCategory>()
-            .HasKey(ac => new { ac.CategoriesId, ac.AccessoriesId });
+                .HasKey(ac => new { ac.Id, ac.CategoriesId, ac.AccessoriesId });
 
             builder.Entity<AccessoryCategory>()
                 .HasOne(ac => ac.Category)

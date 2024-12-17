@@ -46,5 +46,7 @@ namespace ZooShop.Infrastructure.Data.Models
 
         [ForeignKey(nameof(AccessoryId))]
         public Accessory Accessory { get; set; } = null!;
+
+        public ICollection<AccessoryCategory> AccessoryCategories { get; set; }
     }
 }

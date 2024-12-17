@@ -5,6 +5,8 @@ namespace ZooShop.Infrastructure.Data.Models
 {
     public class AccessoryCategory
     {
+        [Key]
+        public int Id { get; set; }
         [Required] 
         public int CategoriesId { get; set; }
         [ForeignKey(nameof(CategoriesId))]
