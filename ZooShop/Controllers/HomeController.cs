@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using ZooShop.Core.Contracts;
+using ZooShop.Core.Models;
+using ZooShop.Core.Services;
 using ZooShop.Models;
 
 
@@ -38,12 +40,34 @@ namespace ZooShop.Controllers
             
         }
 
-        [AllowAnonymous]
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult ProductsByCategory(string category)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var products = productService.GetProductsByCategory(category);
+            return View(products);  // Прехвърляме списъка с продукти към изгледа
         }
+
+        [HttpGet]
+        public IActionResult Search(string searchTerm)
+        {
+            var products = productService.SearchProducts(searchTerm);
+
+            var productModels = products.Select(p => new ProductIndexServiceModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl
+            }).ToList();
+
+            return View(productModels);
+        }
+
+        //[AllowAnonymous]
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
 
 
     }
